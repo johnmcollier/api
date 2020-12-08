@@ -6,6 +6,7 @@ on:
   release:
     types: # This configuration does not affect the page_build event above
       - created
+      - edited
     
 jobs:
   tagged-release:
@@ -27,7 +28,7 @@ jobs:
         go-version: 1.13
     
     - name: Generate the schema.json
-      run: build.sh
+      run: ./build.sh
     
     - uses: "marvinpinto/action-automatic-releases@latest"
       with:
