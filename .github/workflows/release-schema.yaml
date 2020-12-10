@@ -22,12 +22,8 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: api-repo
-      - name: Download Json Schema
-        uses: actions/download-artifact@v2
-        with:
-          name: devfile-json-schema
       - name: Overwrite Stable Json Schema in Docs
-        run: mkdir -p docs-repo/docs/modules/user-guide/attachments/jsonschemas/stable && cp -f api-repo/schemas/latest/devfile.json docs-repo/docs/modules/user-guide/attachments/jsonschemas/next/devfile.json
+        run: mkdir -p docs-repo/docs/modules/user-guide/attachments/jsonschemas/stable && cp -f api-repo/schemas/latest/devfile.json docs-repo/docs/modules/user-guide/attachments/jsonschemas/stable/devfile.json
       - name: Copy released Json Schema to Docs
         run: mkdir -p docs-repo/docs/modules/user-guide/attachments/jsonschemas/${{ steps.get_version.outputs.VERSION }} && cp -f api-repo/schemas/latest/devfile.json docs-repo/docs/modules/user-guide/attachments/jsonschemas/${{ steps.get_version.outputs.VERSION }}/devfile.json
       - name: Push to the devfile/docs repo
