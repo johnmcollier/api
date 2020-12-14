@@ -3,8 +3,8 @@ package v1alpha1
 import (
 	"testing"
 
-	"github.com/devfile/api/pkg/apis/workspaces/v1alpha2"
 	fuzz "github.com/google/gofuzz"
+	"github.com/johnmcollier/api/v2/pkg/apis/workspaces/v1alpha2"
 	"github.com/stretchr/testify/assert"
 )
 

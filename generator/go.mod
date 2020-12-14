@@ -1,4 +1,4 @@
-module github.com/devfile/api/generator
+module github.com/johnmcollier/api/v2/generator
 
 go 1.13
 

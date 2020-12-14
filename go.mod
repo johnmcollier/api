@@ -1,4 +1,4 @@
-module github.com/devfile/api
+module github.com/johnmcollier/api/v2
 
 go 1.13
 
