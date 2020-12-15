@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Get the version being released
         id: get_version
-        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+        run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/v}
       - name: Checkout devfile docs
         uses: actions/checkout@v2
         with:
