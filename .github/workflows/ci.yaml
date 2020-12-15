@@ -13,7 +13,14 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    
+    - name: Get schema version
+      id: getVersion
+      run: echo schemas/latest/jsonSchemaVersion.txt
 
+    - name: Output version
+      run: echo ${{ steps.get_version.outputs.output }}
+      
     - name: Setup Go environment
       uses: actions/setup-go@v2.1.3
       with:
