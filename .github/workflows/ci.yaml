@@ -16,10 +16,10 @@ jobs:
     
     - name: Get schema version
       id: getVersion
-      run: cat schemas/latest/jsonSchemaVersion.txt
+      run: echo ::set-output name=version::$(cat schemas/latest/jsonSchemaVersion.txt)
 
     - name: Output version
-      run: echo ${{ steps.getVersion.outputs.output }}
+      run: echo ${{ steps.getVersion.outputs.version }}
       
     - name: Setup Go environment
       uses: actions/setup-go@v2.1.3
