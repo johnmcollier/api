@@ -78,3 +78,4 @@ tags
 # IDE folders
 .idea
 generator/build/generator
+make-release.sh
