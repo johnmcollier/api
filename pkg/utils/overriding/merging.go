@@ -5,7 +5,7 @@ import (
 	"reflect"
 	"strings"
 
-	workspaces "github.com/devfile/api/pkg/apis/workspaces/v1alpha2"
+	workspaces "github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2"
 	"k8s.io/apimachinery/pkg/util/json"
 	"k8s.io/apimachinery/pkg/util/sets"
 	"k8s.io/apimachinery/pkg/util/yaml"
@@ -34,6 +34,10 @@ func MergeDevWorkspaceTemplateSpec(
 	}
 
 	if err := ensureNoConflictsWithPlugins(mainContent, pluginFlattenedContents...); err != nil {
+		return nil, err
+	}
+	// also need to ensure no conflict between parent and plugins
+	if err := ensureNoConflictsWithPlugins(parentFlattenedContent, pluginFlattenedContents...); err != nil {
 		return nil, err
 	}
 

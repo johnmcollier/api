@@ -5,8 +5,8 @@ import (
 	"reflect"
 	"strings"
 
-	workspaces "github.com/devfile/api/pkg/apis/workspaces/v1alpha2"
-	unions "github.com/devfile/api/pkg/utils/unions"
+	workspaces "github.com/devfile/api/v2/pkg/apis/workspaces/v1alpha2"
+	unions "github.com/devfile/api/v2/pkg/utils/unions"
 	"k8s.io/apimachinery/pkg/util/json"
 	"k8s.io/apimachinery/pkg/util/sets"
 	strategicpatch "k8s.io/apimachinery/pkg/util/strategicpatch"
@@ -116,6 +116,9 @@ func OverrideDevWorkspaceTemplateSpec(original *workspaces.DevWorkspaceTemplateS
 
 func ensureOnlyExistingElementsAreOverridden(spec *workspaces.DevWorkspaceTemplateSpecContent, overrides workspaces.Overrides) error {
 	return checkKeys(func(elementType string, keysSets []sets.String) []error {
+		if len(keysSets) <= 1 {
+			return []error{}
+		}
 		specKeys := keysSets[0]
 		overlayKeys := keysSets[1]
 		newElementsInOverlay := overlayKeys.Difference(specKeys)
